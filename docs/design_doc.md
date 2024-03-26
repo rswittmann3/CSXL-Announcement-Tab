@@ -28,7 +28,15 @@ As Rhonda Root, I should view, post, edit, and delete any post on the CSXL page 
 
 
 
-Wireframes / Mockups: Include rough wireframes of your feature’s user interfaces for the most critical user stories, along with brief descriptions of what is going on. These can be hand-drawn, made in PowerPoint/KeyNote, or created with a tool like Figma. To see an example of a detailed wireframe Kris made this summer before building the drop-in feature, see this Figma board. You will notice the final implementation is not 1:1 with the original wireframe!
+Wireframes / Mockups:
+
+As seen in the wireframe images below, organization leaders can create/edit posts, and students, members, and other users can view these posts in their feed, as well as click on any post to see more details. Organizations have their own page as well, where leaders can see all of their posts in one place and edit them accordingly. 
+![Larry Leader/Ronda Root Make Post Page](./images/make-post.png)
+![Sally Student/Mason Member Feed Page](./images/your-feed.png)
+![Sally Student/Mason Member View Post Page](./images/view-post.png)
+![Larry Leader/Ronda Root Org Homepage](./images/organization-feed.png)
+
+
 
 Technical Implementation Opportunities and Planning
 
