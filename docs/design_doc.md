@@ -33,15 +33,15 @@ Wireframes / Mockups: Include rough wireframes of your feature’s user interfac
 Technical Implementation Opportunities and Planning
 
 
-1. The existing backend user organization and permission functionalities will be extended and integrated in our project. 
+1. The existing backend user organization and permission functionalities will be extended and integrated in our project. We will use these to add metadata to our posts and ensure that the operations done by a user are correctly authorized using permissions.
 
-2. We want to make a new home page, an edit page, and a user view of a post.
+2. We want to make a new home page, a post draft page, a modified organization page with their posts, and a user view of a post.
 
-3. We will add a post entity and a post model.
+3. We will add a post entity and a post model. The frontend/backend model should be very similar if not the same so the services for both the frontend and backend and communicate properly. The PostEntity will have to leverage User and Organization entities as well.
 
-4. We will need Crud operations for the all the posts. 
+4. We will need Crud operations for the all the posts. The authorization will be performed by the backend service, although we should ensure the frontend will not allow this to happen.
 
-5. The newsfeed should only be able modified by Rhonda Root personas. The announcement feed should only be edited by that organizations deisgnated administrator. Sally Student should not be able to edit or delete a post.
+5. The newsfeed should only be able modified by Rhonda Root personas. The announcement feed should only be edited by that organizations administrator(s). Sally Student and Mason Member should not be able to edit or delete a post and only Mason Member should be able to view his subscribed to organizations posts.
 
 
 
