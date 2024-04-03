@@ -18,6 +18,7 @@ from .event_registration import (
     NewEventRegistration,
 )
 from .registration_type import RegistrationType
+from .announcement import Announcement
 
 __authors__ = ["Kris Jordan"]
 __copyright__ = "Copyright 2023"

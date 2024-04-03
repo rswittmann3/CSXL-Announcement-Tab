@@ -34,7 +34,7 @@ As seen in the wireframe images below, organization leaders can create/edit post
 ![Larry Leader/Ronda Root Make Post Page](./images/make-post.png)
 ![Sally Student/Mason Member Feed Page](./images/your-feed.png)
 ![Sally Student/Mason Member View Post Page](./images/view-post.png)
-![Larry Leader/Ronda Root Org Homepage](./images/organization-feed.png)
+![Larry Leader/Ronda Root Org Homepage](./images/org-feed.png)
 
 
 
