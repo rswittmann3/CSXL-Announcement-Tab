@@ -4,7 +4,7 @@ export interface Announcement {
   organization: string | null;
   slug: string;
   img: string | null;
-  published_date: string;
+  published_date: string| null;
   modified_date: string;
   headline: string;
   synopsis: string;
