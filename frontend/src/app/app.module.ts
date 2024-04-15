@@ -41,6 +41,7 @@ import { AboutComponent } from './about/about.component';
 import { GateComponent } from './gate/gate.component';
 import { ProfileEditorComponent } from './profile/profile-editor/profile-editor.component';
 import { SharedModule } from './shared/shared.module';
+import { AnnouncementModule } from './announcement/announcement.module';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { SharedModule } from './shared/shared.module';
           return localStorage.getItem('bearerToken');
         }
       }
-    })
+    }),
+    AnnouncementModule
   ],
   providers: [
     {
