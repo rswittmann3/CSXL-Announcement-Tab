@@ -152,6 +152,7 @@ class AnnouncementService:
         announce.synopsis = announcement.synopsis,
         announce.main_story = announcement.main_story,
         announce.state = announcement.state,
+        announce.viewable_signed_out = announcement.viewable_signed_out
 
         # Save changes
         self._session.commit()
