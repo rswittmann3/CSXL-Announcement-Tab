@@ -48,7 +48,7 @@ export class AnnouncementEditorComponent {
     path: 'edit',
     component: AnnouncementEditorComponent,
     title: 'Announcement Editor',
-    //canActivate: [canActivateEditor],
+    canActivate: [canActivateEditor],
     resolve: {
       profile: profileResolver
       //announcement: announcementResolver
