@@ -67,7 +67,8 @@ export class AnnouncementEditorComponent {
     main_story: 'test main story',
     state: 'draft',
     published_date: '',
-    modified_date: ''
+    modified_date: '',
+    viewable_signed_out: false
   };
 
   /** Store the currently-logged-in user's profile.  */
@@ -85,6 +86,7 @@ export class AnnouncementEditorComponent {
   headline = new FormControl('', [Validators.maxLength(2000)]);
   synopsis = new FormControl('', [Validators.maxLength(2000)]);
   state = 'draft';
+  viewable_signed_out = new FormControl(false, [Validators.required]);
   /** Announcement Editor Form */
   public announcementForm = this.formBuilder.group({
     id: this.id,
@@ -95,7 +97,8 @@ export class AnnouncementEditorComponent {
     headline: this.headline,
     synopsis: this.synopsis,
     main_story: this.main_story,
-    state: this.state
+    state: this.state,
+    viewable_signed_out: this.viewable_signed_out
   });
 
   /** Constructs the announcement editor component */

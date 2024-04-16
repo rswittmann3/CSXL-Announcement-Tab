@@ -41,6 +41,8 @@ class AnnouncementEntity(EntityBase):
     main_story: Mapped[str] = mapped_column(String, nullable=False)
     # State of announcement (Draft, Published, Archived)
     state: Mapped[str] = mapped_column(String, nullable=False)
+    # Whether or not the announcement is viewable for signed out users
+    viewable_signed_out: Mapped[bool] = mapped_column(Boolean, default=False)
 
 
     @classmethod 
@@ -65,6 +67,7 @@ class AnnouncementEntity(EntityBase):
             synopsis = model.synopsis,
             main_story = model.main_story,
             state = model.state,
+            viewable_signed_out = model.viewable_signed_out
         )
     
     def to_model(self) -> Announcement:
@@ -86,4 +89,5 @@ class AnnouncementEntity(EntityBase):
             synopsis=self.synopsis,
             main_story=self.main_story,
             state=self.state,
+            viewable_signed_out = self.viewable_signed_out
         )
