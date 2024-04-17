@@ -1,0 +1,78 @@
+mat-card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 450px;
+    padding: 0 1rem;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 0.6rem;
+}
+
+.mdc-card__media:first-child {
+    border-radius: 100%;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.left-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo {
+    height: auto;
+    max-width: 2.5rem;
+    max-height: 2.5rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    border-radius: 2.5rem;
+}
+
+.name {
+    height: 2.5rem;
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 2.5rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.synopsis {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.synopsis p {
+    width: 100%;
+    height: 2.5rem;
+    line-height: 1.25rem;
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 14px;
+}

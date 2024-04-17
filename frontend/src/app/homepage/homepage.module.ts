@@ -18,15 +18,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { AnnouncementEditorComponent } from './announcement-editor/announcement-editor.component';
-import { AnnouncementRoutingModule } from './announcement-routing.module';
+import { HomepageRoutingModule } from './homepage-routing.module';
 
 /* UI Widgets */
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [AnnouncementEditorComponent],
+  declarations: [HomepageComponent],
   imports: [
     CommonModule,
     MatTabsModule,
@@ -42,11 +42,11 @@ import { SharedModule } from '../shared/shared.module';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
+    HomepageRoutingModule,
     MatIconModule,
     MatTooltipModule,
-    AnnouncementRoutingModule,
     RouterModule,
     SharedModule
   ]
 })
-export class AnnouncementModule {}
+export class HomepageModule {}
