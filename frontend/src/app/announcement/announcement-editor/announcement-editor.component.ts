@@ -57,7 +57,7 @@ export class AnnouncementEditorComponent {
 
   /** Store the announcement.  */
   public announcement: Announcement = {
-    id: 0,
+    id: null,
     author: 'test',
     organization: 'test org',
     slug: 'test slug',
@@ -75,7 +75,7 @@ export class AnnouncementEditorComponent {
 
   /** Store the announcement id. */
   announcement_slug: string = 'new';
-  id = 0;
+  id = 5;
   /** Add validators to the form */
   author = new FormControl(this.announcement.author, [Validators.required]);
   slug = '0';
@@ -140,11 +140,18 @@ export class AnnouncementEditorComponent {
    * @returns {void}
    */
   onSubmit(): void {
+    console.log(this.announcementForm.valid);
     if (this.announcementForm.valid) {
       Object.assign(this.announcement, this.announcementForm.value);
       this.announcement.id = this.id;
+      this.announcement.slug = this.announcement.slug + this.announcement.id;
       if (this.announcement_slug == 'new') {
-        this.announcementService.createAnnouncement(this.announcement);
+        this.announcementService
+          .createAnnouncement(this.announcement)
+          .subscribe({
+            next: (announcement) => this.onSuccess(announcement),
+            error: (err) => this.onError(err)
+          });
       } else {
         this.announcementService
           .updateAnnouncement(this.announcement)
@@ -161,7 +168,7 @@ export class AnnouncementEditorComponent {
    * @returns {void}
    */
   onCancel(): void {
-    this.router.navigate([`announcements/${this.announcement_slug}`]);
+    this.router.navigate([`/`]);
   }
 
   /** Event handler to handle the first change in the announcement name field
@@ -181,7 +188,7 @@ export class AnnouncementEditorComponent {
    * @returns {void}
    */
   private onSuccess(announcement: Announcement): void {
-    this.router.navigate(['/announcements/', announcement.slug]);
+    this.router.navigate(['/']);
 
     let message: string =
       this.announcement_slug === 'new'

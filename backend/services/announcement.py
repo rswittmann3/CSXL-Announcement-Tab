@@ -65,6 +65,7 @@ class AnnouncementService:
         # Checks if the announcement already exists in the table
         if announcement.id:
             # Set id to None so database can handle setting the id
+            print("done")
             announcement.id = None
 
         # Otherwise, create new object

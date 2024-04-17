@@ -72,10 +72,7 @@
         Cancel
       </button>
       <!-- Submit Button -->
-      <button
-        mat-stroked-button
-        type="submit"
-        [disabled]="announcementForm.invalid">
+      <button mat-stroked-button type="submit" (click)="onSubmit()">
         Save
       </button>
     </mat-card-actions>
