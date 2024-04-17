@@ -14,29 +14,29 @@ import { PermissionService } from 'src/app/permission.service';
 import { Announcement } from '../announcement.model';
 import { AnnouncementService } from '../announcement.service';
 import { Profile } from 'src/app/profile/profile.service';
-//import { announcementResolver } from '../announcement.resolver';
+import { announcementDetailResolver } from '../announcement.resolver';
 
 //todo
-const canActivateEditor: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
-  /** Determine if page is viewable by user based on permissions */
+// const canActivateEditor: CanActivateFn = (
+//   route: ActivatedRouteSnapshot,
+//   state: RouterStateSnapshot
+// ) => {
+//   /** Determine if page is viewable by user based on permissions */
 
-  let slug: string = route.params['slug'];
+//   let slug: string = route.params['slug'];
 
-  if (slug === 'new') {
-    return inject(PermissionService).check(
-      'announcement.create',
-      'announcement'
-    );
-  } else {
-    return inject(PermissionService).check(
-      'announcement.update',
-      `announcement/${slug}`
-    );
-  }
-};
+//   if (slug === 'new') {
+//     return inject(PermissionService).check(
+//       'announcement.create',
+//       'announcement'
+//     );
+//   } else {
+//     return inject(PermissionService).check(
+//       'announcement.update',
+//       `announcement/${slug}`
+//     );
+//   }
+// };
 
 @Component({
   selector: 'app-announcement-editor',
@@ -45,19 +45,19 @@ const canActivateEditor: CanActivateFn = (
 })
 export class AnnouncementEditorComponent {
   public static Route: Route = {
-    path: 'edit',
+    path: ':slug/edit',
     component: AnnouncementEditorComponent,
     title: 'Announcement Editor',
     //canActivate: [canActivateEditor],
     resolve: {
-      profile: profileResolver
-      //announcement: announcementResolver
+      profile: profileResolver,
+      announcement: announcementDetailResolver
     }
   };
 
   /** Store the announcement.  */
   public announcement: Announcement = {
-    id: 0,
+    id: null,
     author: 'test',
     organization: 'test org',
     slug: 'test slug',
@@ -67,8 +67,7 @@ export class AnnouncementEditorComponent {
     main_story: 'test main story',
     state: 'draft',
     published_date: '',
-    modified_date: '',
-    viewable_signed_out: false
+    modified_date: ''
   };
 
   /** Store the currently-logged-in user's profile.  */
@@ -76,20 +75,26 @@ export class AnnouncementEditorComponent {
 
   /** Store the announcement id. */
   announcement_slug: string = 'new';
-  id = 0;
+  id = 5;
   /** Add validators to the form */
-  author = new FormControl('', [Validators.required]);
+  author = new FormControl(this.announcement.author, [Validators.required]);
   slug = '0';
-  organization = new FormControl('', [Validators.required]);
-  img = new FormControl('', [Validators.maxLength(2000)]);
-  main_story = new FormControl('', [Validators.maxLength(2000)]);
-  headline = new FormControl('', [Validators.maxLength(2000)]);
-  synopsis = new FormControl('', [Validators.maxLength(2000)]);
+  organization = new FormControl(this.announcement.organization, [
+    Validators.required
+  ]);
+  img = new FormControl(this.announcement.img, [Validators.maxLength(2000)]);
+  main_story = new FormControl(this.announcement.main_story, [
+    Validators.maxLength(2000)
+  ]);
+  headline = new FormControl(this.announcement.headline, [
+    Validators.maxLength(2000)
+  ]);
+  synopsis = new FormControl(this.announcement.synopsis, [
+    Validators.maxLength(2000)
+  ]);
   state = 'draft';
-  viewable_signed_out = new FormControl(false, [Validators.required]);
   /** Announcement Editor Form */
   public announcementForm = this.formBuilder.group({
-    id: this.id,
     author: this.author,
     organization: this.organization,
     slug: this.slug,
@@ -97,8 +102,7 @@ export class AnnouncementEditorComponent {
     headline: this.headline,
     synopsis: this.synopsis,
     main_story: this.main_story,
-    state: this.state,
-    viewable_signed_out: this.viewable_signed_out
+    state: this.state
   });
 
   /** Constructs the announcement editor component */
@@ -110,37 +114,44 @@ export class AnnouncementEditorComponent {
     private announcementService: AnnouncementService
   ) {
     /** Initialize data from resolvers. */
-    // const data = this.route.snapshot.data as {
-    //   profile: Profile;
-    //   announcement: Announcement;
-    // };
-    // this.profile = data.profile;
-    // this.announcement = data.announcement;
-    // /** Set announcement form data */
-    // this.announcementForm.setValue({
-    //   id: this.announcement.id,
-    //   author: this.announcement.author,
-    //   organization: this.announcement.organization,
-    //   slug: this.announcement.slug,
-    //   img: this.announcement.img,
-    //   headline: this.announcement.headline,
-    //   synopsis: this.announcement.synopsis,
-    //   main_story: this.announcement.main_story,
-    //   state: this.announcement.state
-    // });
-    // /** Get id from the url */
-    // let announcement_slug = this.route.snapshot.params['slug'];
-    // this.announcement_slug = announcement_slug;
+    const data = this.route.snapshot.data as {
+      profile: Profile;
+      announcement: Announcement;
+    };
+    this.profile = data.profile;
+    this.announcement = data.announcement;
+    /** Set announcement form data */
+    this.announcementForm.setValue({
+      author: this.announcement.author,
+      organization: this.announcement.organization,
+      slug: this.announcement.slug,
+      img: this.announcement.img,
+      headline: this.announcement.headline,
+      synopsis: this.announcement.synopsis,
+      main_story: this.announcement.main_story,
+      state: this.announcement.state
+    });
+    /** Get id from the url */
+    let announcement_slug = this.route.snapshot.params['slug'];
+    this.announcement_slug = announcement_slug;
   }
 
   /** Event handler to handle submitting the Update Announcement Form.
    * @returns {void}
    */
   onSubmit(): void {
+    console.log(this.announcementForm.valid);
     if (this.announcementForm.valid) {
       Object.assign(this.announcement, this.announcementForm.value);
+      this.announcement.id = this.id;
+      this.announcement.slug = this.announcement.slug + this.announcement.id;
       if (this.announcement_slug == 'new') {
-        this.announcementService.createAnnouncement(this.announcement);
+        this.announcementService
+          .createAnnouncement(this.announcement)
+          .subscribe({
+            next: (announcement) => this.onSuccess(announcement),
+            error: (err) => this.onError(err)
+          });
       } else {
         this.announcementService
           .updateAnnouncement(this.announcement)
@@ -157,7 +168,7 @@ export class AnnouncementEditorComponent {
    * @returns {void}
    */
   onCancel(): void {
-    this.router.navigate([`announcements/${this.announcement_slug}`]);
+    this.router.navigate([`/`]);
   }
 
   /** Event handler to handle the first change in the announcement name field
@@ -165,7 +176,7 @@ export class AnnouncementEditorComponent {
    * @returns {void}
    */
   generateSlug(): void {
-    const id = this.announcementForm.controls['id'].value;
+    const id = this.id;
     const slug = this.announcementForm.controls['slug'].value;
     if (id && !slug) {
       var generatedSlug = String(id).replace(/[^a-zA-Z0-9]/g, '-');
@@ -177,7 +188,7 @@ export class AnnouncementEditorComponent {
    * @returns {void}
    */
   private onSuccess(announcement: Announcement): void {
-    this.router.navigate(['/announcements/', announcement.slug]);
+    this.router.navigate(['/']);
 
     let message: string =
       this.announcement_slug === 'new'

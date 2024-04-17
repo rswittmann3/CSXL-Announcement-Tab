@@ -9,7 +9,6 @@
 import { Component, Input } from '@angular/core';
 import { Announcement } from '../../announcement.model';
 import { Profile } from '/workspace/frontend/src/app/profile/profile.service';
-import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'announcement-preview',

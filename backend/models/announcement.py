@@ -24,5 +24,4 @@ class Announcement(BaseModel):
     synopsis: str
     main_story: str
     state: str
-    viewable_signed_out: bool
     
