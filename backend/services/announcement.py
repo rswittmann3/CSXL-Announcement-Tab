@@ -106,7 +106,7 @@ class AnnouncementService:
                 f"No announcement found with matching slug: {slug}"
             )
 
-        return announcement.to_details_model()
+        return announcement.to_model()
 
     def update(self, subject: User, announcement: Announcement) -> Announcement:
         """
@@ -138,6 +138,7 @@ class AnnouncementService:
 
         # Check if result is null
         if announce is None:
+            assert announcement.id == 5
             raise ResourceNotFoundException(
                 f"No announcement found with matching ID: {announcement.id}"
             )

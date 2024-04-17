@@ -24,14 +24,9 @@ import { AnnouncementRoutingModule } from './announcement-routing.module';
 /* UI Widgets */
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { AnnouncementPreview } from './widgets/announcement-preview/announcement-preview.widget';
 
 @NgModule({
-  declarations: [
-    AnnouncementEditorComponent,
-    // UI Widgets
-    AnnouncementPreview
-  ],
+  declarations: [AnnouncementEditorComponent],
   imports: [
     CommonModule,
     MatTabsModule,

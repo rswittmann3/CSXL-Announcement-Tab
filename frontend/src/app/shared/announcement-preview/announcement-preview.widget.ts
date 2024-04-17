@@ -7,7 +7,7 @@
  * @license MIT
  */
 import { Component, Input } from '@angular/core';
-import { Announcement } from '../../announcement.model';
+import { Announcement } from '../../announcement/announcement.model';
 import { Profile } from '/workspace/frontend/src/app/profile/profile.service';
 
 @Component({

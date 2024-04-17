@@ -5,5 +5,12 @@
   <search-bar [(searchBarQuery)]="searchBarQuery" />
 
   <!-- Organizations -->
-  <div class="announcement-preview"></div>
+  <div class="announcement-preview">
+    <announcement-preview
+      class="card"
+      [announcement]="announcement"
+      [profile]="profile"
+      [profilePermissions]="permValues"
+      *ngFor="let announcement of announcements" />
+  </div>
 </div>
