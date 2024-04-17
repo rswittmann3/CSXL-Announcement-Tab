@@ -26,8 +26,8 @@
           </picture>
         </a>
         <div *ngIf="profile$ | async as profile; else unauthenticated">
+          <a mat-list-item routerLink="/homepage">Home</a>
           <a mat-list-item routerLink="/coworking">Coworking</a>
-          <a mat-list-item routerLink="/announcements">Announcements</a>
           <a mat-list-item routerLink="/events">Events</a>
           <a mat-list-item routerLink="/organizations">Organizations</a>
           <a mat-list-item routerLink="/academics">Academics</a>
@@ -53,7 +53,7 @@
           <a mat-list-item (click)="auth.signOut()">Sign out</a>
         </div>
         <ng-template #unauthenticated>
-          <a mat-list-item routerLink="/announcements">Announcements</a>
+          <a mat-list-item routerLink="/homepage">Home</a>
           <a mat-list-item routerLink="/organizations">Organizations</a>
           <a mat-list-item routerLink="/events">Events</a>
           <a mat-list-item routerLink="/about">About the XL</a>
