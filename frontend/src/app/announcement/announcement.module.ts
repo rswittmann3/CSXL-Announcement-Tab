@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AnnouncementEditorComponent } from './announcement-editor/announcement-editor.component';
-
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
 
 /* Angular Material Modules */
 import { MatTableModule } from '@angular/material/table';
@@ -21,10 +17,21 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { AnnouncementEditorComponent } from './announcement-editor/announcement-editor.component';
 import { AnnouncementRoutingModule } from './announcement-routing.module';
 
+/* UI Widgets */
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
+import { AnnouncementPreview } from './widgets/announcement-preview/announcement-preview.widget';
+
 @NgModule({
-  declarations: [AnnouncementEditorComponent],
+  declarations: [
+    AnnouncementEditorComponent,
+    // UI Widgets
+    AnnouncementPreview
+  ],
   imports: [
     CommonModule,
     MatTabsModule,
