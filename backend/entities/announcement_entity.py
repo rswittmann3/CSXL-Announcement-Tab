@@ -24,7 +24,7 @@ class AnnouncementEntity(EntityBase):
     # Author of the announcement
     author: Mapped[str] = mapped_column(String, nullable=False)
     # Organization that announcement is associated with (In case of Ronda Root, CSXL)
-    organization: Mapped[int] = mapped_column(Integer, nullable=False)
+    organization: Mapped[str] = mapped_column(String, nullable=False)
     # Slug of the organization and its announcement id
     slug: Mapped[str] = mapped_column(String, nullable=False, unique=True)
     # Image associated with announcement
@@ -41,35 +41,31 @@ class AnnouncementEntity(EntityBase):
     main_story: Mapped[str] = mapped_column(String, nullable=False)
     # State of announcement (Draft, Published, Archived)
     state: Mapped[str] = mapped_column(String, nullable=False)
-    # Whether or not the announcement is viewable for signed out users
-    viewable_signed_out: Mapped[bool] = mapped_column(Boolean, default=False)
 
-
-    @classmethod 
+    @classmethod
     def from_model(cls, model: Announcement) -> Self:
         """
         Class method that converts an "Announcement" model into an "AnnouncementEntity"
 
-        Parameters: 
+        Parameters:
             - model (Announcement): Model to convert into an entity
         Returns:
             AnnouncementEntity: Entity created from model
         """
         return cls(
-            id = model.id,
-            author = model.author,
-            organization = model.organization,
-            slug = model.slug,
-            img = model.img,
-            published_date = model.published_date,
-            modified_date = model.modified_date,
-            headline = model.headline,
-            synopsis = model.synopsis,
-            main_story = model.main_story,
-            state = model.state,
-            viewable_signed_out = model.viewable_signed_out
+            id=model.id,
+            author=model.author,
+            organization=model.organization,
+            slug=model.slug,
+            img=model.img,
+            published_date=model.published_date,
+            modified_date=model.modified_date,
+            headline=model.headline,
+            synopsis=model.synopsis,
+            main_story=model.main_story,
+            state=model.state,
         )
-    
+
     def to_model(self) -> Announcement:
         """
         Converts an `AnnouncementEntity` object into a `Announcement` model object
@@ -89,5 +85,4 @@ class AnnouncementEntity(EntityBase):
             synopsis=self.synopsis,
             main_story=self.main_story,
             state=self.state,
-            viewable_signed_out = self.viewable_signed_out
         )

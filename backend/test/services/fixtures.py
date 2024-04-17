@@ -10,7 +10,6 @@ from ...services import (
     OrganizationService,
     EventService,
     RoomService,
-    AnnouncementService
 )
 
 __authors__ = ["Kris Jordan", "Ajay Gandecha"]
@@ -62,7 +61,3 @@ def event_svc_integration(session: Session, user_svc_integration: UserService):
 def room_svc(session: Session):
     """RoomService fixture."""
     return RoomService(session, PermissionService(session))
-
-@pytest.fixture()
-def announcement_svc_integration(session: Session):
-    return AnnouncementService(session, AnnouncementService(session))

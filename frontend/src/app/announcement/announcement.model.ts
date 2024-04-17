@@ -10,5 +10,4 @@ export interface Announcement {
   synopsis: string;
   main_story: string;
   state: string;
-  viewable_signed_out: boolean;
 }
