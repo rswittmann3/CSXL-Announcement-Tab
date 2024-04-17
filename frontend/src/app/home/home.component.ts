@@ -20,9 +20,9 @@ export class HomeComponent {
     let profile: Profile | undefined = route.snapshot.data['profile'];
     if (profile) {
       if (profile.id) {
-        router.navigateByUrl('/coworking');
+        router.navigateByUrl('/homepage');
       } else {
-        router.navigateByUrl('/profile');
+        router.navigateByUrl('/homepage');
       }
     } else {
       router.navigateByUrl('/about');

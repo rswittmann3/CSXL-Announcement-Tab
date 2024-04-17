@@ -55,6 +55,12 @@ const routes: Routes = [
       import('./announcement/announcement.module').then(
         (m) => m.AnnouncementModule
       )
+  },
+  {
+    path: 'homepage',
+    title: 'Home',
+    loadChildren: () =>
+      import('./homepage/homepage.module').then((m) => m.HomepageModule)
   }
 ];
 

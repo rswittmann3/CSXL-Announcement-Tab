@@ -5,6 +5,7 @@ import { AnnouncementEditorComponent } from './announcement-editor/announcement-
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
+/* Angular Material Modules */
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
