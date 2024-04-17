@@ -18,6 +18,7 @@ __authors__ = ["Anish Kompella", "Aditya Krishna", "Robert Wittmann"]
 __copyright__ = "Copyright 2023"
 __license__ = "MIT"
 
+
 class AnnouncementService:
     """Service that performs all of the actions on the `Announcement` table"""
 
@@ -37,13 +38,13 @@ class AnnouncementService:
         Returns:
             list[Announcement]: List of all `Announcement`
         """
-        # Select all entries in `Organization` table
-        query = select(Announcement)
+        # Select all entries in `Announcement` table
+        query = select(AnnouncementEntity)
         entities = self._session.scalars(query).all()
 
         # Convert entries to a model and return
         return [entity.to_model() for entity in entities]
-    
+
     def create(self, subject: User, announcement: Announcement) -> Announcement:
         """
         Creates a announcement based on the input object and adds it to the table.
@@ -75,7 +76,7 @@ class AnnouncementService:
 
         # Return added object
         return announcement_entity.to_model()
-    
+
     def get_by_slug(self, slug: str) -> Announcement:
         """
         Get the announcement from a slug
@@ -105,7 +106,7 @@ class AnnouncementService:
             )
 
         return announcement.to_details_model()
-    
+
     def update(self, subject: User, announcement: Announcement) -> Announcement:
         """
         Update the announcement
@@ -141,24 +142,24 @@ class AnnouncementService:
             )
 
         # Update announcement object
-        announce.id = announcement.id,
-        announce.author = announcement.author,
-        announce.organization = announcement.organization,
-        announce.slug = announcement.slug,
-        announce.img = announcement.img,
-        announce.published_date = announcement.published_date,
-        announce.modified_date = announcement.modified_date,
-        announce.headline = announcement.headline,
-        announce.synopsis = announcement.synopsis,
-        announce.main_story = announcement.main_story,
-        announce.state = announcement.state,
+        announce.id = (announcement.id,)
+        announce.author = (announcement.author,)
+        announce.organization = (announcement.organization,)
+        announce.slug = (announcement.slug,)
+        announce.img = (announcement.img,)
+        announce.published_date = (announcement.published_date,)
+        announce.modified_date = (announcement.modified_date,)
+        announce.headline = (announcement.headline,)
+        announce.synopsis = (announcement.synopsis,)
+        announce.main_story = (announcement.main_story,)
+        announce.state = (announcement.state,)
 
         # Save changes
         self._session.commit()
 
         # Return updated object
         return announce.to_model()
-    
+
     def delete(self, subject: User, slug: str) -> None:
         """
         Delete the announcement based on the provided slug.
