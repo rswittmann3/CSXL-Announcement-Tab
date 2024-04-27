@@ -42,6 +42,7 @@ import { GateComponent } from './gate/gate.component';
 import { ProfileEditorComponent } from './profile/profile-editor/profile-editor.component';
 import { SharedModule } from './shared/shared.module';
 import { AnnouncementModule } from './announcement/announcement.module';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { AnnouncementModule } from './announcement/announcement.module';
     MatToolbarModule,
     MatTooltipModule,
     MatCheckboxModule,
+    MatTableModule,
     FormsModule,
     RouterModule,
     SharedModule,
