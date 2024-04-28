@@ -1,0 +1,36 @@
+.announcement-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.left-header-info {
+    padding-top: 0.5rem;
+    width: 10%;
+}
+
+.right-header-info {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.announcement-top-header-group {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: left;
+}
+
+.announcement-name-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 48px;
+}
+.announcement-description {
+    font-size: 1rem;
+    margin-top: 0;
+}

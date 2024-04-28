@@ -1,0 +1,7 @@
+<h1 *ngIf="announcement === undefined">Not found</h1>
+<div class="announcement-details-card">
+  <announcement-details-card
+    class="card"
+    [announcement]="announcement"
+    [profile]="profile" />
+</div>
