@@ -12,7 +12,9 @@ import { Announcement } from '../announcement.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 let titleResolver: ResolveFn<string> = (route: ActivatedRouteSnapshot) => {
-  return route!.data['announcement']?.headline;
+  return (
+    route.parent!.data['announcement']?.headline ?? 'Announcement Not Found'
+  );
 };
 @Component({
   selector: 'app-announcement-details',
@@ -25,12 +27,12 @@ export class AnnouncementDetailsComponent {
     component: AnnouncementDetailsComponent,
     resolve: {
       profile: profileResolver,
-      organization: announcementDetailResolver
+      announcement: announcementDetailResolver
     },
     children: [
       {
         path: '',
-        title: 'Announcement',
+        title: titleResolver,
         component: AnnouncementDetailsComponent
       }
     ]
