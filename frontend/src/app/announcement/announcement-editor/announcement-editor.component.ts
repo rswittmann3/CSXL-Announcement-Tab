@@ -60,7 +60,7 @@ export class AnnouncementEditorComponent {
     id: null,
     author: 'test',
     organization: 'test org',
-    slug: 'test slug',
+    slug: 'new',
     img: 'test img url',
     headline: 'test headline',
     synopsis: 'test synopsis',
@@ -74,11 +74,10 @@ export class AnnouncementEditorComponent {
   public profile: Profile | null = null;
 
   /** Store the announcement id. */
-  announcement_slug: string = 'new';
-  id = 5;
+  slug: string = this.announcement.slug;
+
   /** Add validators to the form */
   author = new FormControl(this.announcement.author, [Validators.required]);
-  slug = '0';
   organization = new FormControl(this.announcement.organization, [
     Validators.required
   ]);
@@ -122,7 +121,7 @@ export class AnnouncementEditorComponent {
     this.announcement = data.announcement;
     /** Set announcement form data */
     this.announcementForm.setValue({
-      author: this.announcement.author,
+      author: this.profile.first_name + ' ' + this.profile.last_name,
       organization: this.announcement.organization,
       slug: this.announcement.slug,
       img: this.announcement.img,
@@ -133,7 +132,7 @@ export class AnnouncementEditorComponent {
     });
     /** Get id from the url */
     let announcement_slug = this.route.snapshot.params['slug'];
-    this.announcement_slug = announcement_slug;
+    this.slug = announcement_slug;
   }
 
   /** Event handler to handle submitting the Update Announcement Form.
@@ -143,9 +142,10 @@ export class AnnouncementEditorComponent {
     console.log(this.announcementForm.valid);
     if (this.announcementForm.valid) {
       Object.assign(this.announcement, this.announcementForm.value);
-      this.announcement.id = this.id;
-      this.announcement.slug = this.announcement.slug + this.announcement.id;
-      if (this.announcement_slug == 'new') {
+      this.announcement.slug =
+        this.announcement.organization +
+        this.announcement.headline.slice(0, 10);
+      if (this.slug == 'new') {
         this.announcementService
           .createAnnouncement(this.announcement)
           .subscribe({
@@ -171,18 +171,18 @@ export class AnnouncementEditorComponent {
     this.router.navigate([`/`]);
   }
 
-  /** Event handler to handle the first change in the announcement name field
-   * Automatically generates a slug from the announcement name (that can be edited)
-   * @returns {void}
-   */
-  generateSlug(): void {
-    const id = this.id;
-    const slug = this.announcementForm.controls['slug'].value;
-    if (id && !slug) {
-      var generatedSlug = String(id).replace(/[^a-zA-Z0-9]/g, '-');
-      this.announcementForm.setControl('slug', new FormControl(generatedSlug));
-    }
-  }
+  // /** Event handler to handle the first change in the announcement name field
+  //  * Automatically generates a slug from the announcement name (that can be edited)
+  //  * @returns {void}
+  //  */
+  // generateSlug(): void {
+  //   const id = this.announcement.id;
+  //   const slug = this.announcementForm.controls['slug'].value;
+  //   if (id && !slug) {
+  //     var generatedSlug = String(id).replace(/[^a-zA-Z0-9]/g, '-');
+  //     this.announcementForm.setControl('slug', new FormControl(generatedSlug));
+  //   }
+  // }
 
   /** Opens a confirmation snackbar when an announcement is successfully updated.
    * @returns {void}
@@ -191,9 +191,7 @@ export class AnnouncementEditorComponent {
     this.router.navigate(['/']);
 
     let message: string =
-      this.announcement_slug === 'new'
-        ? 'Announcement Created'
-        : 'Announcement Updated';
+      this.slug === 'new' ? 'Announcement Created' : 'Announcement Updated';
 
     this.snackBar.open(message, '', { duration: 2000 });
   }
@@ -203,7 +201,7 @@ export class AnnouncementEditorComponent {
    */
   private onError(err: any): void {
     let message: string =
-      this.announcement_slug === 'new'
+      this.slug === 'new'
         ? 'Error: Announcement Not Created'
         : 'Error: Announcement Not Updated';
 
