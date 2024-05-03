@@ -25,7 +25,7 @@ export class AnnouncementDetailsComponent {
     component: AnnouncementDetailsComponent,
     resolve: {
       profile: profileResolver,
-      organization: announcementDetailResolver
+      announcement: announcementDetailResolver
     },
     children: [
       {
