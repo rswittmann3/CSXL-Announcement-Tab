@@ -5,7 +5,7 @@
   <!-- Update Announcement Card -->
   <mat-card>
     <mat-card-header>
-      <mat-card-title *ngIf="this.announcement_slug === 'new'; else update">
+      <mat-card-title *ngIf="this.slug === 'new'; else update">
         Create Announcement
       </mat-card-title>
       <ng-template #update>
