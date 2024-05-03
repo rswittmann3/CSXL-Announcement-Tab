@@ -13,7 +13,7 @@ class Announcement(BaseModel):
     of the 'Announcement' database in the PostgreSQL database.
     """
 
-    id: int
+    id: int | None = None
     author: str
     organization: str | None
     slug: str
