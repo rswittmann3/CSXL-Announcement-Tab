@@ -16,27 +16,26 @@ import { AnnouncementService } from '../announcement.service';
 import { Profile } from 'src/app/profile/profile.service';
 import { announcementDetailResolver } from '../announcement.resolver';
 
-//todo
-// const canActivateEditor: CanActivateFn = (
-//   route: ActivatedRouteSnapshot,
-//   state: RouterStateSnapshot
-// ) => {
-//   /** Determine if page is viewable by user based on permissions */
+const canActivateEditor: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  /** Determine if page is viewable by user based on permissions */
 
-//   let slug: string = route.params['slug'];
+  let slug: string = route.params['slug'];
 
-//   if (slug === 'new') {
-//     return inject(PermissionService).check(
-//       'announcement.create',
-//       'announcement'
-//     );
-//   } else {
-//     return inject(PermissionService).check(
-//       'announcement.update',
-//       `announcement/${slug}`
-//     );
-//   }
-// };
+  if (slug === 'new') {
+    return inject(PermissionService).check(
+      'announcement.create',
+      'announcement'
+    );
+  } else {
+    return inject(PermissionService).check(
+      'announcement.update',
+      `announcement/${slug}`
+    );
+  }
+};
 
 @Component({
   selector: 'app-announcement-editor',
@@ -48,7 +47,7 @@ export class AnnouncementEditorComponent {
     path: ':slug/edit',
     component: AnnouncementEditorComponent,
     title: 'Announcement Editor',
-    //canActivate: [canActivateEditor],
+    canActivate: [canActivateEditor],
     resolve: {
       profile: profileResolver,
       announcement: announcementDetailResolver

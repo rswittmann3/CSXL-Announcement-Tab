@@ -51,11 +51,23 @@ user = User(
     accepted_community_agreement=True,
 )
 
-users = [root, ambassador, user]
+org_leader = User(
+    id=4,
+    pid=333333333,
+    onyen="org_leader",
+    email="leader@org.unc.edu",
+    first_name="Larry",
+    last_name="Leader",
+    pronouns="He / Him / His",
+    accepted_community_agreement=True
+)
+
+users = [root, ambassador, user, org_leader]
 
 roles_users = {
     role_data.root_role.id: [root],
     role_data.ambassador_role.id: [ambassador],
+    role_data.org_leader_role.id: [org_leader],
 }
 
 
