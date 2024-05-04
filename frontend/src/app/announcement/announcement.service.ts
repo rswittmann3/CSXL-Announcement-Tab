@@ -41,6 +41,10 @@ export class AnnouncementService {
   updateAnnouncement(announcement: Announcement): Observable<Announcement> {
     return this.http.put<Announcement>('/api/announcements', announcement);
   }
+
+  // deleteAnnouncement(slug: String): Observable<any> {
+  //   return this.http.delete('/api/announcements/${slug}');
+  // }
 }
 
 /** pls work */

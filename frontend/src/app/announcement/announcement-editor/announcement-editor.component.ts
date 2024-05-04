@@ -261,4 +261,11 @@ export class AnnouncementEditorComponent {
       }
     }
   }
+  // onDelete(): void {
+  //   this.announcementService
+  //     .deleteAnnouncement(this.announcement.slug)
+  //     .subscribe({
+  //       error: (err) => this.onError(err)
+  //     });
+  // }
 }
