@@ -37,7 +37,7 @@
      [routerLink]="['/announcements', announcement.slug]">
      <button mat-stroked-button>Read more</button>
      </a>
-    <!-- Link to Announcement Details Page -->
+    <!-- Link to Announcement Editor Page -->
     <a
     [routerLink]="['/announcements', announcement!.slug, 'edit']"
     *ngIf="checkPermissions() | async">
