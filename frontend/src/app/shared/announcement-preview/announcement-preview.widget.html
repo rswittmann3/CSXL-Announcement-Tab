@@ -29,11 +29,24 @@
 
    <!-- Logo Image -->
    <img mat-card-image src="{{ announcement!.img }}" class="logo" />
+
+   
+  <!-- Link to Announcement Details Page -->
+   <a
+    class="details-link"
+     [routerLink]="['/announcements', announcement.slug]">
+     <button mat-stroked-button>Read more</button>
+     </a>
     <!-- Link to Announcement Details Page -->
-        <a
-        class="details-link"
-        [routerLink]="['/announcements', announcement.slug]">
-        <button mat-stroked-button>Read More</button>
-        </a>
+    <a
+    [routerLink]="['/announcements', announcement!.slug, 'edit']"
+    *ngIf="checkPermissions() | async">
+    <button mat-icon-button color="basic">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </a>
     </mat-card-actions>
+
+
+  
 </mat-card>

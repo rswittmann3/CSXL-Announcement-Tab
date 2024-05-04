@@ -9,6 +9,8 @@
 import { Component, Input } from '@angular/core';
 import { Announcement } from '../../announcement/announcement.model';
 import { Profile } from '/workspace/frontend/src/app/profile/profile.service';
+import { Observable } from 'rxjs';
+import { PermissionService } from 'src/app/permission.service';
 
 @Component({
   selector: 'announcement-preview',
@@ -23,5 +25,12 @@ export class AnnouncementPreview {
   /** @deprecated Stores the permission values for a profile */
   @Input() profilePermissions!: Map<number, number>;
 
-  constructor() {}
+  constructor(private permission: PermissionService) {}
+
+  checkPermissions(): Observable<boolean> {
+    return this.permission.check(
+      'organization.update',
+      `organization/${this.announcement?.slug}`
+    );
+  }
 }

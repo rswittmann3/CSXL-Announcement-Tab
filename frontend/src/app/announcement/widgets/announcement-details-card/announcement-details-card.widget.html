@@ -12,6 +12,9 @@
     <!-- Author and Organization -->
     <mat-card-subtitle>
       {{ announcement!.author }} | {{ announcement!.organization }}
+      <span class="published-date">{{
+        announcement.published_date | date: 'mediumDate'
+      }}</span>
     </mat-card-subtitle>
     <!-- Announcement Main Story -->
     <p
