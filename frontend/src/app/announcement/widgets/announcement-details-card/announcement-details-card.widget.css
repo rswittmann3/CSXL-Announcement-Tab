@@ -1,36 +1,51 @@
+.announcement-card {
+    margin: 0 !important;
+    max-width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    min-height: 200px;
+    font-size: 25px;
+    font-family: "Sans Serif";
+}
+
+.announcement-card:hover {
+    background-color: #525252;
+    cursor: pointer;
+}
+
 .announcement-header {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding-bottom: 16px;
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding: 12px;
+    font-size: large;
 }
 
-.left-header-info {
-    padding-top: 0.5rem;
-    width: 10%;
+.logo {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    margin-top: 12px; /* Adds space between the text and the image */
 }
 
-.right-header-info {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-}
-
-.announcement-top-header-group {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: left;
-}
-
-.announcement-name-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    height: 48px;
-}
 .announcement-description {
-    font-size: 1rem;
-    margin-top: 0;
+    font-size: 25px; /* Adjust font size as needed */
+    margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+    .announcement-card {
+        padding: 20px;
+        max-width: 98%;
+        min-height: 300px;
+    }
+
+    .logo {
+        width: 80%; /* Adjust the width in mobile view */
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .announcement-card:hover {
+        background-color: #f5f5f5;
+    }
 }

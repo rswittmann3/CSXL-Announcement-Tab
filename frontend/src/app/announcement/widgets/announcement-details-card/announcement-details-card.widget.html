@@ -2,30 +2,30 @@
   class="announcement-card"
   *ngIf="announcement !== undefined"
   appearance="outlined">
-  <!-- Announcement Card Header (Image, Name, Description) -->
+  <!-- Announcement Card Header -->
   <mat-card-header class="announcement-header">
-    <!-- Announcement Logo (Laptops/Monitors) -->
+    <!-- Headline -->
+    <mat-card-title class="headline">
+      {{ announcement!.headline }}
+      <!-- Assuming there's a title field -->
+    </mat-card-title>
+    <!-- Author and Organization -->
+    <mat-card-subtitle>
+      {{ announcement!.author }} | {{ announcement!.organization }}
+      <span class="published-date">{{
+        announcement.published_date | date: 'mediumDate'
+      }}</span>
+    </mat-card-subtitle>
+    <!-- Announcement Main Story -->
+    <p
+      class="announcement-description"
+      *ngIf="announcement!.main_story; else synopsis">
+      {{ announcement!.main_story }}
+    </p>
+    <ng-template #synopsis>
+      {{ announcement!.synopsis }}
+    </ng-template>
+    <!-- Logo Image -->
     <img mat-card-image src="{{ announcement!.img }}" class="logo" />
-    <div class="right-header-info">
-      <!-- Announcement Name, Image, and Social Media -->
-      <div class="announcement-top-header-group">
-        <!-- Announcement Headline -->
-        <div class="announcement-name-section">
-          <mat-card-title class="user-name">
-            {{ announcement!.author }}
-          </mat-card-title>
-        </div>
-      </div>
-
-      <!-- Announcement Main Story -->
-      <p
-        class="announcement-description"
-        *ngIf="announcement!.main_story; else synopsis">
-        {{ announcement!.main_story }}
-      </p>
-      <ng-template #synopsis>
-        {{ announcement!.synopsis }}
-      </ng-template>
-    </div></mat-card-header
-  ></mat-card
->
+  </mat-card-header>
+</mat-card>

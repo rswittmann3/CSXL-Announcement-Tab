@@ -34,6 +34,7 @@ export class AdminAnnouncementListComponent {
     // Navigate to the announcement editor for a new announcement (slug = create)
     this.router.navigate(['announcements', 'new', 'edit']);
   }
+
   editAnnouncement(announcement: Announcement): void {
     // Navigate to the announcement editor for an existing announcement
     this.router.navigate(['/announcements', announcement.slug, 'edit']);

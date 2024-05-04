@@ -82,7 +82,7 @@ export class AnnouncementEditorComponent {
   ]);
   img = new FormControl(this.announcement.img, [Validators.maxLength(2000)]);
   main_story = new FormControl(this.announcement.main_story, [
-    Validators.maxLength(2000)
+    Validators.maxLength(1000000)
   ]);
   headline = new FormControl(this.announcement.headline, [
     Validators.maxLength(2000)
