@@ -38,13 +38,12 @@
      <button mat-stroked-button>Read more</button>
      </a>
     <!-- Link to Announcement Editor Page -->
-    <a
-    [routerLink]="['/announcements', announcement!.slug, 'edit']"
-    *ngIf="checkPermissions() | async">
-    <button mat-icon-button color="basic">
-      <mat-icon>edit</mat-icon>
-    </button>
-  </a>
+    <a *ngIf="checkPermissions() | async">
+      <button mat-icon-button color="basic"
+      (click)="edit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </a>
     </mat-card-actions>
 
 
