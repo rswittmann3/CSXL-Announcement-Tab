@@ -7,11 +7,13 @@
         <!-- Author Name -->
         <mat-card-title
           class="name"
-          [matTooltip]="announcement.author"
+          [matTooltip]="announcement.headline"
           matTooltipPosition="above">
-        </mat-card-title> {{announcement.author}}
+        </mat-card-title> {{announcement.headline}}
       </div>
     </mat-card-header>
+
+
   
     <!-- Announcement Synopsis -->
     <mat-card-content class="synopsis">
@@ -23,6 +25,10 @@
     </mat-card-content>
     
     <mat-card-actions class="links">
+
+
+   <!-- Logo Image -->
+   <img mat-card-image src="{{ announcement!.img }}" class="logo" />
     <!-- Link to Announcement Details Page -->
         <a
         class="details-link"
