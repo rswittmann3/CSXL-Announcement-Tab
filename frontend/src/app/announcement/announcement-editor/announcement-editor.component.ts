@@ -76,7 +76,7 @@ export class AnnouncementEditorComponent {
   slug: string = this.announcement.slug;
 
   /** Add validators to the form */
-  author = new FormControl(this.announcement.author, [Validators.required]);
+  // author = new FormControl(this.announcement.author, [Validators.required]);
   organization = new FormControl(this.announcement.organization, [
     Validators.required
   ]);
@@ -90,17 +90,15 @@ export class AnnouncementEditorComponent {
   synopsis = new FormControl(this.announcement.synopsis, [
     Validators.maxLength(2000)
   ]);
-  state = 'draft';
   /** Announcement Editor Form */
   public announcementForm = this.formBuilder.group({
-    author: this.author,
+    // author: this.author,
     organization: this.organization,
     slug: this.slug,
     img: this.img,
     headline: this.headline,
     synopsis: this.synopsis,
-    main_story: this.main_story,
-    state: this.state
+    main_story: this.main_story
   });
 
   /** Constructs the announcement editor component */
@@ -120,14 +118,13 @@ export class AnnouncementEditorComponent {
     this.announcement = data.announcement;
     /** Set announcement form data */
     this.announcementForm.setValue({
-      author: this.profile.first_name + ' ' + this.profile.last_name,
+      // author: this.profile.first_name + ' ' + this.profile.last_name,
       organization: this.announcement.organization,
       slug: this.announcement.slug,
       img: this.announcement.img,
       headline: this.announcement.headline,
       synopsis: this.announcement.synopsis,
-      main_story: this.announcement.main_story,
-      state: this.announcement.state
+      main_story: this.announcement.main_story
     });
     /** Get id from the url */
     let announcement_slug = this.route.snapshot.params['slug'];
@@ -187,7 +184,7 @@ export class AnnouncementEditorComponent {
    * @returns {void}
    */
   private onSuccess(announcement: Announcement): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/announcements/', this.announcement.slug]);
 
     let message: string =
       this.slug === 'new' ? 'Announcement Created' : 'Announcement Updated';
@@ -207,5 +204,61 @@ export class AnnouncementEditorComponent {
     this.snackBar.open(message, '', {
       duration: 2000
     });
+  }
+  /** Event handler to handle submitting the Update Announcement Form.
+   * @returns {void}
+   */
+  onPublish(): void {
+    this.announcement.author =
+      this.profile?.first_name + ' ' + this.profile?.last_name;
+    this.announcement.state = 'published';
+    if (this.announcementForm.valid) {
+      Object.assign(this.announcement, this.announcementForm.value);
+      if (this.slug == 'new') {
+        this.announcement.slug =
+          this.announcement.organization +
+          this.announcement.headline.slice(0, 10);
+        this.announcementService
+          .createAnnouncement(this.announcement)
+          .subscribe({
+            next: (announcement) => this.onSuccess(announcement),
+            error: (err) => this.onError(err)
+          });
+      } else {
+        this.announcement.state = 'published';
+        this.announcementService
+          .updateAnnouncement(this.announcement)
+          .subscribe({
+            next: (announcement) => this.onSuccess(announcement),
+            error: (err) => this.onError(err)
+          });
+      }
+    }
+  }
+  onPreview(): void {
+    this.announcement.author =
+      this.profile?.first_name + ' ' + this.profile?.last_name;
+    if (this.announcementForm.valid) {
+      Object.assign(this.announcement, this.announcementForm.value);
+      this.announcement.state = 'draft';
+      if (this.slug == 'new') {
+        this.announcement.slug =
+          this.announcement.organization +
+          this.announcement.headline.slice(0, 10);
+        this.announcementService
+          .createAnnouncement(this.announcement)
+          .subscribe({
+            next: (announcement) => this.onSuccess(announcement),
+            error: (err) => this.onError(err)
+          });
+      } else {
+        this.announcementService
+          .updateAnnouncement(this.announcement)
+          .subscribe({
+            next: (announcement) => this.onSuccess(announcement),
+            error: (err) => this.onError(err)
+          });
+      }
+    }
   }
 }
