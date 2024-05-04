@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class SearchBar {
   @Input() searchBarQuery: string = '';
   @Output() searchBarQueryChange = new EventEmitter<string>();
+  @Input() placeholder: string = 'Search...';
 
   constructor() {}
 
