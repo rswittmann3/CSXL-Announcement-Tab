@@ -70,7 +70,7 @@ class AnnouncementService:
             announcement.id = None
 
         announcement.modified_date = str(datetime.datetime.now())
-        if (announcement.state == 'publish'):
+        if (announcement.state == 'published'):
             announcement.published_date = announcement.modified_date
         
         # Otherwise, create new object

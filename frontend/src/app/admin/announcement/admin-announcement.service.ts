@@ -47,4 +47,17 @@ export class AdminAnnouncementService {
         })
       );
   }
+  /** Deletes an announcement
+   * @param announcement_id: id of the announcement object to delete
+   * @returns {Observable<Organization>}
+   */
+  editAnnouncement(announcementToEdit: Announcement): Observable<Announcement> {
+    return this.http
+      .put<Announcement>(`/api/announcements/${announcementToEdit.slug}`, null)
+      .pipe(
+        tap((_) => {
+          this.announcements.updateAnnouncement(announcementToEdit);
+        })
+      );
+  }
 }

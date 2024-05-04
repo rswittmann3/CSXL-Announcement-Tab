@@ -42,3 +42,5 @@ export class AnnouncementService {
     return this.http.put<Announcement>('/api/announcements', announcement);
   }
 }
+
+/** pls work */
