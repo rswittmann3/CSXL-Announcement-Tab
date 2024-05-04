@@ -67,6 +67,7 @@ class AnnouncementService:
         # Checks if the announcement already exists in the table
         if announcement.id:
             # Set id to None so database can handle setting the id
+            print("done")
             announcement.id = None
 
         announcement.modified_date = str(datetime.datetime.now())
@@ -143,6 +144,7 @@ class AnnouncementService:
 
         # Check if result is null
         if announce is None:
+            assert announcement.id == 5
             raise ResourceNotFoundException(
                 f"No announcement found with matching ID: {announcement.id}"
             )

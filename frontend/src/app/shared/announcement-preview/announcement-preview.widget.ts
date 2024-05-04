@@ -40,4 +40,5 @@ export class AnnouncementPreview {
   edit(): void {
     this.router.navigate(['/announcements', this.announcement.slug, 'edit']);
   }
+
 }

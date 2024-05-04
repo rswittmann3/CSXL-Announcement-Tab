@@ -8,6 +8,7 @@ const routes: Routes = [
   AnnouncementDetailsComponent.Route
 ];
 
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
