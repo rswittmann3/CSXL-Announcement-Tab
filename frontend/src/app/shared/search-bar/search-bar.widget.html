@@ -4,7 +4,8 @@
     matInput
     type="text"
     [(ngModel)]="searchBarQuery"
-    (ngModelChange)="onTextChanged()" />
+    (ngModelChange)="onTextChanged()"
+    [placeholder]="placeholder" />
   <!-- Search/Clear Icon Logic -->
   <button
     *ngIf="searchBarQuery; else noSearch"
