@@ -5,7 +5,7 @@
   <!-- Update Announcement Card -->
   <mat-card>
     <mat-card-header>
-      <mat-card-title *ngIf="this.announcement_slug === 'new'; else update">
+      <mat-card-title *ngIf="this.slug === 'new'; else update">
         Create Announcement
       </mat-card-title>
       <ng-template #update>
@@ -13,7 +13,7 @@
       </ng-template>
     </mat-card-header>
     <mat-card-content>
-      <!-- Announcement Author Field -->
+      <!-- Announcement Author Field
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Announcement Author</mat-label>
         <input
@@ -22,7 +22,7 @@
           formControlName="author"
           name="author"
           required />
-      </mat-form-field>
+      </mat-form-field> -->
       <!-- Organization Field -->
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Organization</mat-label>
@@ -33,20 +33,7 @@
           name="organization"
           required />
       </mat-form-field>
-      <!-- Image Field -->
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Image Link</mat-label>
-        <input matInput placeholder="" formControlName="img" name="img" />
-      </mat-form-field>
-      <!-- Main Story Field -->
-      <mat-form-field appearance="outline" color="accent">
-        <mat-label>Main Story</mat-label>
-        <input
-          matInput
-          placeholder="Enter main story here."
-          formControlName="main_story"
-          name="main_story" />
-      </mat-form-field>
+
       <!-- Headline Field -->
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Headline</mat-label>
@@ -65,16 +52,40 @@
           formControlName="synopsis"
           name="synopsis" />
       </mat-form-field>
+      <!-- Image Field -->
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Image Link</mat-label>
+        <input matInput placeholder="" formControlName="img" name="img" />
+      </mat-form-field>
+      <!-- Main Story Field -->
+      <mat-form-field appearance="outline" color="accent" class="main_story">
+        <mat-label>Main Story</mat-label>
+        <input
+          matInput
+          placeholder="Enter main story here."
+          formControlName="main_story"
+          name="main_story" />
+
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <!-- Cancel Button -->
       <button mat-stroked-button type="button" (click)="onCancel()">
         Cancel
       </button>
-      <!-- Submit Button -->
-      <button mat-stroked-button type="submit" (click)="onSubmit()">
-        Save
+      <!-- Cancel Button -->
+      <button mat-stroked-button type="preview" (click)="onPreview()">
+        Preview
       </button>
+      <!-- Publish Button -->
+      <button mat-stroked-button type="publish" (click)="onPublish()">
+        Publish
+
+      </button>
+      <!-- Delete Button
+      <button mat-stroked-button type="delete" (click)="onDelete()">
+        Delete
+      </button> -->
     </mat-card-actions>
   </mat-card>
 </form>

@@ -20,13 +20,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { HomepageRoutingModule } from './homepage-routing.module';
 
+import { AnnouncementFilterPipe } from './announcement-filter/announcement-filter.pipe';
+
+
 /* UI Widgets */
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [HomepageComponent],
+  declarations: [HomepageComponent, AnnouncementFilterPipe],
+
   imports: [
     CommonModule,
     MatTabsModule,

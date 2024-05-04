@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AnnouncementDetailsCard } from './widgets/announcement-details-card/announcement-details-card';
 
 import { AnnouncementEditorComponent } from './announcement-editor/announcement-editor.component';
 import { AnnouncementRoutingModule } from './announcement-routing.module';
@@ -24,9 +25,15 @@ import { AnnouncementRoutingModule } from './announcement-routing.module';
 /* UI Widgets */
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { AnnouncementDetailsComponent } from './announcement-details/announcement-details.component';
 
 @NgModule({
-  declarations: [AnnouncementEditorComponent],
+  declarations: [
+    AnnouncementEditorComponent,
+    AnnouncementDetailsComponent,
+    AnnouncementDetailsCard
+  ],
+
   imports: [
     CommonModule,
     MatTabsModule,

@@ -7,11 +7,14 @@
         <!-- Author Name -->
         <mat-card-title
           class="name"
-          [matTooltip]="announcement.author"
+          [matTooltip]="announcement.headline"
           matTooltipPosition="above">
-        </mat-card-title> {{announcement.author}}
+        </mat-card-title> {{announcement.headline}}
       </div>
     </mat-card-header>
+
+
+
   
     <!-- Announcement Synopsis -->
     <mat-card-content class="synopsis">
@@ -23,11 +26,28 @@
     </mat-card-content>
     
     <mat-card-actions class="links">
-    <!-- Link to Announcement Details Page -->
-        <a
-        class="details-link"
-        [routerLink]="['/organizations', announcement.slug]">
-        <button mat-stroked-button>Read More</button>
-        </a>
+
+
+   <!-- Logo Image -->
+   <img mat-card-image src="{{ announcement!.img }}" class="logo" />
+
+   
+  <!-- Link to Announcement Details Page -->
+   <a
+    class="details-link"
+     [routerLink]="['/announcements', announcement.slug]">
+     <button mat-stroked-button>Read more</button>
+     </a>
+    <!-- Link to Announcement Editor Page -->
+    <a *ngIf="checkPermissions() | async">
+      <button mat-icon-button color="basic"
+      (click)="edit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </a>
     </mat-card-actions>
+
+
+  
+
 </mat-card>

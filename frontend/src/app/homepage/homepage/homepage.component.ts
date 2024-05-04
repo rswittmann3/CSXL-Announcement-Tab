@@ -45,6 +45,9 @@ export class HomepageComponent {
       announcements: Announcement[];
     };
     this.profile = data.profile;
-    this.announcements = data.announcements;
+    this.announcements = data.announcements.filter(
+      (announcement) => announcement.state === 'published'
+    );
+
   }
 }
