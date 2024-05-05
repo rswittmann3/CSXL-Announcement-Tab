@@ -8,6 +8,7 @@
       'Search Announcement by Organization, Author, Title, or Synopsis'
     " />
 
+
   <!-- Organizations -->
   <div class="announcement-preview">
     <announcement-preview
@@ -18,5 +19,6 @@
       *ngFor="
         let announcement of announcements | announcementFilter: searchBarQuery
       " />
+
   </div>
 </div>

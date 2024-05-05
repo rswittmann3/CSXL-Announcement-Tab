@@ -33,6 +33,7 @@ import { AnnouncementDetailsComponent } from './announcement-details/announcemen
     AnnouncementDetailsComponent,
     AnnouncementDetailsCard
   ],
+
   imports: [
     CommonModule,
     MatTabsModule,

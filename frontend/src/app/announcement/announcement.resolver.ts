@@ -25,6 +25,7 @@ export const announcementDetailResolver: ResolveFn<Announcement | undefined> = (
       author: 'test',
       organization: 'test org',
       slug: 'new',
+
       img: 'test img url',
       headline: 'test headline',
       synopsis: 'test synopsis',

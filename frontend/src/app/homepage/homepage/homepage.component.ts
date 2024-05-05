@@ -48,5 +48,6 @@ export class HomepageComponent {
     this.announcements = data.announcements.filter(
       (announcement) => announcement.state === 'published'
     );
+
   }
 }

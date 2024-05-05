@@ -37,6 +37,7 @@ const canActivateEditor: CanActivateFn = (
   }
 };
 
+
 @Component({
   selector: 'app-announcement-editor',
   templateUrl: './announcement-editor.component.html',
@@ -77,12 +78,14 @@ export class AnnouncementEditorComponent {
 
   /** Add validators to the form */
   // author = new FormControl(this.announcement.author, [Validators.required]);
+
   organization = new FormControl(this.announcement.organization, [
     Validators.required
   ]);
   img = new FormControl(this.announcement.img, [Validators.maxLength(2000)]);
   main_story = new FormControl(this.announcement.main_story, [
     Validators.maxLength(1000000)
+
   ]);
   headline = new FormControl(this.announcement.headline, [
     Validators.maxLength(2000)
@@ -93,12 +96,14 @@ export class AnnouncementEditorComponent {
   /** Announcement Editor Form */
   public announcementForm = this.formBuilder.group({
     // author: this.author,
+
     organization: this.organization,
     slug: this.slug,
     img: this.img,
     headline: this.headline,
     synopsis: this.synopsis,
     main_story: this.main_story
+
   });
 
   /** Constructs the announcement editor component */
@@ -119,6 +124,7 @@ export class AnnouncementEditorComponent {
     /** Set announcement form data */
     this.announcementForm.setValue({
       // author: this.profile.first_name + ' ' + this.profile.last_name,
+
       organization: this.announcement.organization,
       slug: this.announcement.slug,
       img: this.announcement.img,
@@ -129,6 +135,7 @@ export class AnnouncementEditorComponent {
     /** Get id from the url */
     let announcement_slug = this.route.snapshot.params['slug'];
     this.slug = announcement_slug;
+
   }
 
   /** Event handler to handle submitting the Update Announcement Form.
@@ -142,6 +149,7 @@ export class AnnouncementEditorComponent {
         this.announcement.organization +
         this.announcement.headline.slice(0, 10);
       if (this.slug == 'new') {
+
         this.announcementService
           .createAnnouncement(this.announcement)
           .subscribe({
@@ -180,11 +188,13 @@ export class AnnouncementEditorComponent {
   //   }
   // }
 
+
   /** Opens a confirmation snackbar when an announcement is successfully updated.
    * @returns {void}
    */
   private onSuccess(announcement: Announcement): void {
     this.router.navigate(['/announcements/', this.announcement.slug]);
+
 
     let message: string =
       this.slug === 'new' ? 'Announcement Created' : 'Announcement Updated';

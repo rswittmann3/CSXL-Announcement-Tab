@@ -41,6 +41,7 @@ mat-card {
     height: 2.5rem;
     margin: 0;
     font-size: 18px;
+
     font-weight: 500;
     line-height: 2.5rem;
     overflow: hidden;
@@ -85,5 +86,6 @@ mat-card {
 .details-link button:hover {
     background-color: #0056b3;
 }
+
 
 
