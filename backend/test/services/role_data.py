@@ -20,7 +20,7 @@ root_role = Role(id=1, name="root")
 ambassador_role = Role(id=2, name="ambassadors")
 org_leader_role = Role(id=4, name="org_leaders")
 
-roles = [root_role, ambassador_role, org_leader_role]
+roles = [root_role, ambassador_role]
 
 
 def insert_fake_data(session: Session):
