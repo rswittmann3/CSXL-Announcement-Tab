@@ -112,7 +112,9 @@ class AnnouncementService:
                 f"No announcement found with matching slug: {slug}"
             )
 
+
         return announcement.to_model()
+
 
     def update(self, subject: User, announcement: Announcement) -> Announcement:
         """

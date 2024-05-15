@@ -24,6 +24,7 @@ from .event_registration_entity import EventRegistrationEntity
 from .announcement_entity import AnnouncementEntity
 
 
+
 __authors__ = ["Kris Jordan"]
 __copyright__ = "Copyright 2023"
 __license__ = "MIT"

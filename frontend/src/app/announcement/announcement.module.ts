@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnnouncementEditorComponent } from './announcement-editor/announcement-editor.component';
 
-/* Angular Material Modules */
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
+
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';

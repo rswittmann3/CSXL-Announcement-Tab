@@ -38,6 +38,7 @@ const canActivateEditor: CanActivateFn = (
 };
 
 
+
 @Component({
   selector: 'app-announcement-editor',
   templateUrl: './announcement-editor.component.html',
@@ -84,6 +85,7 @@ export class AnnouncementEditorComponent {
   ]);
   img = new FormControl(this.announcement.img, [Validators.maxLength(2000)]);
   main_story = new FormControl(this.announcement.main_story, [
+
     Validators.maxLength(1000000)
 
   ]);
@@ -93,9 +95,11 @@ export class AnnouncementEditorComponent {
   synopsis = new FormControl(this.announcement.synopsis, [
     Validators.maxLength(2000)
   ]);
+
   /** Announcement Editor Form */
   public announcementForm = this.formBuilder.group({
     // author: this.author,
+
 
     organization: this.organization,
     slug: this.slug,
@@ -103,6 +107,7 @@ export class AnnouncementEditorComponent {
     headline: this.headline,
     synopsis: this.synopsis,
     main_story: this.main_story
+
 
   });
 
@@ -187,7 +192,6 @@ export class AnnouncementEditorComponent {
   //     this.announcementForm.setControl('slug', new FormControl(generatedSlug));
   //   }
   // }
-
 
   /** Opens a confirmation snackbar when an announcement is successfully updated.
    * @returns {void}
