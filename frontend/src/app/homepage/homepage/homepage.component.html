@@ -2,8 +2,23 @@
 
 <div class="page-container">
   <!-- Search Bar -->
-  <search-bar [(searchBarQuery)]="searchBarQuery" />
+  <search-bar
+    [(searchBarQuery)]="searchBarQuery"
+    [placeholder]="
+      'Search Announcement by Organization, Author, Title, or Synopsis'
+    " />
+
 
   <!-- Organizations -->
-  <div class="announcement-preview"></div>
+  <div class="announcement-preview">
+    <announcement-preview
+      class="card"
+      [announcement]="announcement"
+      [profile]="profile"
+      [profilePermissions]="permValues"
+      *ngFor="
+        let announcement of announcements | announcementFilter: searchBarQuery
+      " />
+
+  </div>
 </div>

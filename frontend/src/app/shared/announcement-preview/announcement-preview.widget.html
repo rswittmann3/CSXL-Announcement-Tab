@@ -1,0 +1,53 @@
+<!-- eslint-disable prettier/prettier -->
+<mat-card class="card" appearance="outlined">
+    <!-- Card Header Row (Name, Members) -->
+    <mat-card-header class="header">
+      <!-- Container for Name to allow for left alignment -->
+      <div class="left-container">
+        <!-- Author Name -->
+        <mat-card-title
+          class="name"
+          [matTooltip]="announcement.headline"
+          matTooltipPosition="above">
+        </mat-card-title> {{announcement.headline}}
+      </div>
+    </mat-card-header>
+
+
+
+  
+    <!-- Announcement Synopsis -->
+    <mat-card-content class="synopsis">
+      <p
+        [matTooltip]="announcement.synopsis"
+        #organizationDescription>
+        {{ announcement.synopsis }}
+      </p>
+    </mat-card-content>
+    
+    <mat-card-actions class="links">
+
+
+   <!-- Logo Image -->
+   <img mat-card-image src="{{ announcement!.img }}" class="logo" />
+
+   
+  <!-- Link to Announcement Details Page -->
+   <a
+    class="details-link"
+     [routerLink]="['/announcements', announcement.slug]">
+     <button mat-stroked-button>Read more</button>
+     </a>
+    <!-- Link to Announcement Editor Page -->
+    <a *ngIf="checkPermissions() | async">
+      <button mat-icon-button color="basic"
+      (click)="edit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </a>
+    </mat-card-actions>
+
+
+  
+
+</mat-card>

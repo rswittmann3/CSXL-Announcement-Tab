@@ -14,6 +14,8 @@ from .permission import PermissionService
 
 from .exceptions import ResourceNotFoundException
 
+import datetime
+
 __authors__ = ["Anish Kompella", "Aditya Krishna", "Robert Wittmann"]
 __copyright__ = "Copyright 2023"
 __license__ = "MIT"
@@ -68,13 +70,17 @@ class AnnouncementService:
             print("done")
             announcement.id = None
 
+        announcement.modified_date = str(datetime.datetime.now())
+        if (announcement.state == 'published'):
+            announcement.published_date = announcement.modified_date
+        
         # Otherwise, create new object
         announcement_entity = AnnouncementEntity.from_model(announcement)
 
         # Add new object to table and commit changes
         self._session.add(announcement_entity)
         self._session.commit()
-
+        
         # Return added object
         return announcement_entity.to_model()
 
@@ -106,7 +112,9 @@ class AnnouncementService:
                 f"No announcement found with matching slug: {slug}"
             )
 
-        return announcement.to_details_model()
+
+        return announcement.to_model()
+
 
     def update(self, subject: User, announcement: Announcement) -> Announcement:
         """
@@ -138,6 +146,7 @@ class AnnouncementService:
 
         # Check if result is null
         if announce is None:
+            assert announcement.id == 5
             raise ResourceNotFoundException(
                 f"No announcement found with matching ID: {announcement.id}"
             )
